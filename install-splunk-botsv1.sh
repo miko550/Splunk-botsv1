@@ -39,17 +39,17 @@ install_splunk() {
   fi
   # Setup splunk
   dpkg -i /opt/splunk*.deb
-  /opt/splunk/bin/splunk start --accept-license --answer-yes --no-prompt --seed-passwd changeme
+  /opt/splunk/bin/splunk start --accept-license --answer-yes --no-prompt --seed-passwd splunkadmin
 
   # Install add-ins/apps
-  /opt/splunk/bin/splunk install app apps/fortinet-fortigate-add-on-for-splunk_167.tgz -auth 'admin:changeme'
-  /opt/splunk/bin/splunk install app apps/splunk-add-on-for-microsoft-sysmon_1062.tgz -auth 'admin:changeme'
-  /opt/splunk/bin/splunk install app apps/splunk-add-on-for-microsoft-windows_870.tgz -auth 'admin:changeme'
-  /opt/splunk/bin/splunk install app apps/splunk-app-for-stream_811.tgz -auth 'admin:changeme'
-  /opt/splunk/bin/splunk install app apps/splunk-ta-for-suricata_233.tgz -auth 'admin:changeme'
-  /opt/splunk/bin/splunk install app apps/tenable-add-on-for-splunk_614.tgz  -auth 'admin:changeme'
-  /opt/splunk/bin/splunk install app apps/url-toolbox_192.tgz -auth 'admin:changeme'
-  /opt/splunk/bin/splunk install app apps/boss-of-the-soc-bots-investigation-workshop-for-splunk_122.tgz  -auth 'admin:changeme'
+  /opt/splunk/bin/splunk install app apps/fortinet-fortigate-add-on-for-splunk_167.tgz -auth 'admin:splunkadmin'
+  /opt/splunk/bin/splunk install app apps/splunk-add-on-for-microsoft-sysmon_1062.tgz -auth 'admin:splunkadmin'
+  /opt/splunk/bin/splunk install app apps/splunk-add-on-for-microsoft-windows_870.tgz -auth 'admin:splunkadmin'
+  /opt/splunk/bin/splunk install app apps/splunk-app-for-stream_811.tgz -auth 'admin:splunkadmin'
+  /opt/splunk/bin/splunk install app apps/splunk-ta-for-suricata_233.tgz -auth 'admin:splunkadmin'
+  /opt/splunk/bin/splunk install app apps/tenable-add-on-for-splunk_614.tgz  -auth 'admin:splunkadmin'
+  /opt/splunk/bin/splunk install app apps/url-toolbox_192.tgz -auth 'admin:splunkadmin'
+  /opt/splunk/bin/splunk install app apps/boss-of-the-soc-bots-investigation-workshop-for-splunk_122.tgz  -auth 'admin:splunkadmin'
 
   # Install BOTSv1 dataset
   echo "[$(date +%H:%M:%S)]: Downloading Splunk BOTSv1 Attack Only Dataset..."
@@ -97,7 +97,7 @@ install_splunk() {
   /opt/splunk/bin/splunk restart
   /opt/splunk/bin/splunk enable boot-start
   # Generate the ASN lookup table
-  /opt/splunk/bin/splunk search "|asngen | outputlookup asn" -auth 'admin:changeme'
+  /opt/splunk/bin/splunk search "|asngen | outputlookup asn" -auth 'admin:splunkadmin'
 }
 
 main() {
