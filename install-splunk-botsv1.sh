@@ -56,11 +56,15 @@ install_splunk() {
   /opt/splunk/bin/splunk enable boot-start
   # Generate the ASN lookup table
   /opt/splunk/bin/splunk search "|asngen | outputlookup asn" -auth 'admin:splunkadmin'
+
+  #clean up
+  rm /opt/splunk*.deb
+  rm /opt/botsv1-attack-only.tgz
 }
 
 main() {
   install_splunk
-  echo "BOTSv1 Installation complete!"
+  echo "[$(date +%H:%M:%S)]: BOTSv1 Installation complete!"
 }
 
 main
